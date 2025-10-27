@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="theme-color" content="#a00000" />
+  <title>Don Franco · Planta de Elaborados · Carnicerías Integradas de Rosario</title>
+  <meta name="description" content="Planta de Elaborados Don Franco. Milanesas, hamburguesas, medallones, chorizos y preparados listos para mostrador. Producción propia, gramaje controlado, trazabilidad completa." />
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Tailwind config (mismo esquema rojo CIR) -->
+  <script>
+    tailwind = {
+      config: {
+        theme: {
+          extend: {
+            colors: {
+              fondo: '#0a0a0a',
+              brand: {
+                DEFAULT: '#a00000',
+                light: '#ff2a2a',
+                dark: '#400000'
+              }
+            },
+            boxShadow: {
+              neon: '0 0 24px rgba(255,42,42,.5)',
+              card: '0 20px 60px rgba(0,0,0,.8)'
+            },
+            borderRadius: {
+              xl2: '1.25rem',
+              xl3: '1.75rem'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body { font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; }
+    .glass { background-color: rgba(10,10,10,.6); backdrop-filter: blur(12px); }
+    .reveal { opacity:0; transform: translateY(24px); transition: all .6s cubic-bezier(.16,1,.3,1); }
+    .reveal.show { opacity:1; transform: translateY(0); }
+    .bg-glow {
+      background-image: radial-gradient(circle at 20% 20%, rgba(160,0,0,.35) 0%, rgba(0,0,0,0) 70%),
+                        radial-gradient(circle at 80% 20%, rgba(64,0,0,.4) 0%, rgba(0,0,0,0) 70%);
+      background-color:#0a0a0a;
+    }
+    .hero-overlay {
+      background: radial-gradient(circle at 30% 30%, rgba(160,0,0,.55) 0%, rgba(0,0,0,0) 60%),
+                  radial-gradient(circle at 70% 30%, rgba(0,0,0,.6) 0%, rgba(0,0,0,0) 60%),
+                  linear-gradient(to bottom, rgba(0,0,0,.8) 0%, rgba(10,10,10,0) 40%, rgba(10,10,10,1) 80%);
+    }
+    .dot { box-shadow:0 0 20px rgba(255,42,42,.6); }
+    html {scroll-behavior:smooth;}
+  </style>
+</head>
+
+<body class="bg-fondo text-slate-100 antialiased selection:bg-brand/40 selection:text-white">
+
+  <!-- ================= NAVBAR ================= -->
+  <header class="fixed top-0 left-0 right-0 z-50 border-b border-brand/30 bg-fondo/70 backdrop-blur-xl">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex h-16 items-center justify-between">
+
+      <!-- Logo Don Franco / CIR -->
+      <a href="index.html#top" class="flex items-center gap-3 group">
+        <img src="assets/donfranco-logo.png" alt="Don Franco" class="h-10 w-auto drop-shadow-[0_0_8px_rgba(255,42,42,.6)]" />
+        <div class="leading-tight">
+          <div class="text-xs font-semibold text-slate-200 group-hover:text-white">Planta de Elaborados</div>
+          <div class="text-xs font-semibold text-white">Don&nbsp;Franco</div>
+        </div>
+      </a>
+
+      <!-- Links desktop -->
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-200">
+        <a href="index.html#productos" class="hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,42,42,.8)]">Mayorista CIR</a>
+        <a href="#linea" class="hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,42,42,.8)] flex items-center gap-2">
+          <span>Elaborados</span>
+          <span class="inline-block h-2 w-2 rounded-full bg-brand dot"></span>
+        </a>
+        <a href="#procesos" class="hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,42,42,.8)]">Procesos</a>
+        <a href="#contactoDF" class="hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,42,42,.8)]">Contacto</a>
+        <a href="https://wa.me/5493410000000?text=Hola%20quiero%20la%20linea%20Don%20Franco" class="ml-2 inline-flex items-center rounded-xl2 bg-brand px-4 py-2 text-white shadow-neon hover:bg-brand-light hover:shadow-[0_0_32px_rgba(255,42,42,.8)] transition">WhatsApp Ventas</a>
+      </nav>
+
+      <!-- Burger mobile -->
+      <button id="burgerBtn" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-xl2 border border-brand/40 bg-fondo/60 text-slate-100 shadow-[0_0_16px_rgba(160,0,0,.4)]" aria-label="Abrir menú">
+        <span class="sr-only">Menú</span>
+        <div class="space-y-1.5">
+          <span class="block h-0.5 w-6 bg-white"></span>
+          <span class="block h-0.5 w-6 bg-white"></span>
+          <span class="block h-0.5 w-6 bg-white"></span>
+        </div>
+      </button>
+    </div>
+
+    <!-- Mobile panel -->
+    <div id="mobileMenu" class="md:hidden hidden border-t border-brand/30 bg-fondo/95 backdrop-blur-xl">
+      <nav class="px-6 py-4 flex flex-col text-base font-medium text-slate-200">
+        <a class="py-3 border-b border-white/5 hover:text-white" href="index.html#productos">Mayorista CIR</a>
+        <a class="py-3 border-b border-white/5 hover:text-white" href="#linea">Elaborados</a>
+        <a class="py-3 border-b border-white/5 hover:text-white" href="#procesos">Procesos</a>
+        <a class="py-3 border-b border-white/5 hover:text-white" href="#contactoDF">Contacto</a>
+        <a class="mt-4 inline-flex items-center justify-center rounded-xl2 bg-brand px-4 py-3 text-white shadow-neon hover:bg-brand-light hover:shadow-[0_0_32px_rgba(255,42,42,.8)] transition" href="https://wa.me/5493410000000?text=Hola%20quiero%20la%20linea%20Don%20Franco">WhatsApp Ventas</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ================= HERO ================= -->
+  <section id="top" class="relative isolate pt-24 md:pt-28 lg:pt-32">
+    <div class="absolute inset-0 overflow-hidden">
+      <video class="w-full h-full object-cover opacity-40" autoplay muted loop playsinline>
+        <source src="assets/planta-donfranco-linea.mp4" type="video/mp4" />
+      </video>
+      <div class="absolute inset-0 hero-overlay"></div>
+    </div>
+
+    <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-20 pt-10 md:pb-24 md:pt-16 lg:pb-28 lg:pt-24">
+      <div class="max-w-3xl reveal">
+        <span class="inline-flex items-center gap-2 text-[10px] font-semibold uppercase tracking-wider text-brand-light bg-brand/20 rounded-full px-3 py-1 ring-1 ring-brand/60 shadow-neon">
+          <span class="inline-block h-2 w-2 rounded-full bg-brand dot"></span>
+          Producción Propia · Don Franco
+        </span>
+
+        <h1 class="mt-6 text-3xl font-semibold text-white sm:text-4xl lg:text-5xl leading-tight drop-shadow-[0_0_24px_rgba(0,0,0,1)]">
+          Elaborados listos para vender.<br>
+          <span class="text-brand-light drop-shadow-[0_0_16px_rgba(255,42,42,.8)]">Siempre igual.</span>
+        </h1>
+
+        <p class="mt-6 text-base sm:text-lg text-slate-300 max-w-xl leading-relaxed">
+          Milanesas, hamburguesas, medallones, embutidos y preparados.
+          Gramaje controlado, receta estable y rotulado por lote.
+          Para carnicerías, supermercados y food service que necesitan volumen constante.
+        </p>
+
+        <div class="mt-8 flex flex-col sm:flex-row gap-4">
+          <a href="#linea" class="inline-flex items-center justify-center rounded-xl2 bg-brand px-5 py-3 text-[15px] font-semibold text-white shadow-neon hover:bg-brand-light hover:shadow-[0_0_32px_rgba(255,42,42,.8)] transition">Ver la línea completa</a>
+          <a href="#contactoDF" class="inline-flex items-center justify-center rounded-xl2 border border-white/20 bg-white/5 px-5 py-3 text-[15px] font-semibold text-white/90 hover:bg-white/10 hover:text-white hover:border-white/40 transition">Quiero cotizar marca blanca</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-b from-transparent to-fondo"></div>
+  </section>
+
+  <!-- ================= LINEA DE PRODUCTOS ================= -->
+  <section id="linea" class="relative bg-glow py-20 md:py-28 border-y border-white/5">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl reveal">
+        <h2 class="text-brand-light text-sm font-semibold uppercase tracking-wider flex items-center gap-2">
+          <span class="inline-block h-2 w-2 rounded-full bg-brand dot"></span>
+          Línea Don Franco
+        </h2>
+        <p class="mt-3 text-2xl sm:text-3xl font-semibold text-white">Nuestros elaborados industriales</p>
+        <p class="mt-4 text-slate-400 text-base leading-relaxed">Producto uniforme todo el año. Etiqueta Don&nbsp;Franco o etiqueta propia del cliente (marca blanca).</p>
+      </div>
+
+      <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <!-- Milanesa de Pollo -->
+        <div class="reveal group relative rounded-xl3 overflow-hidden border border-white/10 bg-white/5 shadow-card hover:border-brand/60 hover:shadow-neon transition">
+          <img src="assets/df-milanesa-pollo.jpg" class="h-44 w-full object-cover object-center opacity-80 group-hover:opacity-100 transition" alt="Milanesa de Pollo Don Franco" />
+          <div class="p-5">
+            <div class="text-white font-semibold text-base flex items-start justify-between">
+              <span>Milanesa de Pollo</span>
+              <span class="inline-flex items-center text-[10px] font-semibold uppercase tracking-wide text-brand-light bg-brand/20 rounded-full px-2 py-1 ring-1 ring-brand/60">Control Gramaje</span>
+            </div>
+            <div class="text-slate-400 text-[13px] leading-relaxed mt-2">Corte parejo, apanado prolijo. Ideal bandeja góndola.</div>
+            <div class="text-[11px] text-slate-500 uppercase tracking-wide mt-3">Presentación: caja 5 / 10 kg</div>
+          </div>
+        </div>
+
+        <!-- Hamburguesa 120g -->
+        <div class="reveal group relative rounded-xl3 overflow-hidden border border-white/10 bg-white/5 shadow-card hover:border-brand/60 hover:shadow-neon transition">
+          <img src="assets/df-hamburguesa-120.jpg" class="h-44 w-full object-cover object-center opacity-80 group-hover:opacity-100 transition" alt="Hamburguesa 120g Don Franco" />
+          <div class="p-5">
+            <div class="text-white font-semibold text-base flex items-start justify-between">
+              <span>Hamburguesa 120g</span>
+              <span class="inline-flex items-center text-[10px] font-semibold uppercase tracking-wide text-brand-light bg-brand/20 rounded-full px-2 py-1 ring-1 ring-brand/60">Receta Propia</span>
+            </div>
+            <div class="text-slate-400 text-[13px] leading-relaxed mt-2">Sabor constante, sin sorpresas. Apta freezer / venta directa.</div>
+            <div class="text-[11px] text-slate-500 uppercase tracking-wide mt-3">Presentación: caja 40u</div>
+          </div>
+        </div>
+
+        <!-- Medallón Parrillero -->
+        <div class="reveal group relative rounded-xl3 overflow-hidden border border-white/10 bg-white/5 shadow-card hover:border-brand/60 hover:shadow-neon transition">
+          <img src="assets/df-medallon-parrillero.jpg" class="h-44 w-full object-cover object-center opacity-80 group-hover:opacity-100 transition" alt="Medallón Parrillero Don Franco" />
+          <div class="p-5">
+            <div class="text-white font-semibold text-base flex items-start justify-between">
+              <span>Medallón Parrillero</span>
+              <span class="inline-flex items-center text-[10px] font-semibold uppercase tracking-wide text-brand-light bg-brand/20 rounded-full px-2 py-1 ring-1 ring-brand/60">Linea Grill</span>
+            </div>
+            <div class="text-slate-400 text-[13px] leading-relaxed mt-2">Formato parrilla / plancha. Salida rápida en rotisería y comedor.</div>
+            <div class="text-[11px] text-slate-500 uppercase tracking-wide mt-3">Presentación: bolsa sellada</div>
+          </div>
+        </div>
+
+        <!-- Picada Especial -->
+        <div class="reveal group relative rounded-xl3 overflow-hidden border border-white/10 bg-white/5 shadow-card hover:border-brand/60 hover:shadow-neon transition">
+          <img src="assets/df-picada-especial.jpg" class="h-44 w-full object-cover object-center opacity-80 group-hover:opacity-100 transition" alt="Picada Especial Don Franco" />
+          <div class="p-5">
+            <div class="text-white font-semibold text-base flex items-start justify-between">
+              <span>Picada Especial</span>
+              <span class="inline-flex items-center text-[10px] font-semibold uppercase tracking-wide text-brand-light bg-brand/20 rounded-full px-2 py-1 ring-1 ring-brand/60">Cerdo + Vacuno</span>
+            </div>
+            <div class="text-slate-400 text-[13px] leading-relaxed mt-2">Relación grasa/carne pensada para rinde en mostrador.</div>
+            <div class="text-[11px] text-slate-500 uppercase tracking-wide mt-3">Presentación: bolsa 5kg cerrada</div>
+          </div>
+        </div>
+
+        <!-- Chorizo Parrillero -->
+        <div class="reveal group relative rounded-xl3 overflow-hidden border border-white/10 bg-white/5 shadow-card hover:border-brand/60 hover:shadow-neon transition">
+          <img src="assets/df-chorizo-parrillero.jpg" class="h-44 w-full object-cover object-center opacity-80 group-hover:opacity-100 transition" alt="Chorizo Parrillero Don Franco" />
+          <div class="p-5">
+            <div class="text-white font-semibold text-base flex items-start justify-between">
+              <span>Chorizo Parrillero</span>
+              <span class="inline-flex items-center text-[10px] font-semibold uppercase tracking-wide text-brand-light bg-brand/20 rounded-full px-2 py-1 ring-1 ring-brand/60">Embutido Propio</span>
+            </div>
+            <div class="text-slate-400 text-[13px] leading-relaxed mt-2">Textura firme, especias equilibradas. Ideal bandeja 4u / 6u.</div>
+            <div class="text-[11px] text-slate-500 uppercase tracking-wide mt-3">Presentación: bolsa al vacío</div>
+          </div>
+        </div>
+
+        <!-- Preparados Listos -->
+        <div class="reveal group relative rounded-xl3 overflow-hidden border border-white/10 bg-white/5 shadow-card hover:border-brand/60 hover:shadow-neon transition">
+          <img src="assets/df-preparados-listos.jpg" class="h-44 w-full object-cover object-center opacity-80 group-hover:opacity-100 transition" alt="Preparados listos Don Franco" />
+          <div class="p-5">
+            <div class="text-white font-semibold text-base flex items-start justify-between">
+              <span>Preparados Listos</span>
+              <span class="inline-flex items-center text-[10px] font-semibold uppercase tracking-wide text-brand-light bg-brand/20 rounded-full px-2 py-1 ring-1 ring-brand/60">Venta Directa</span>
+            </div>
+            <div class="text-slate-400 text-[13px] leading-relaxed mt-2">Productos para góndola inmediata: sin tocar, sólo exhibir.</div>
+            <div class="text-[11px] text-slate-500 uppercase tracking-wide mt-3">Presentación: atmósfera controlada</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PROCESOS / DIFERENCIAL ================= -->
+  <section id="procesos" class="relative py-20 md:py-28 border-b border-white/5">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-16 items-start">
+
+      <div class="reveal order-2 lg:order-1">
+        <div class="flex items-start gap-4">
+          <img src="assets/donfranco-logo.png" class="h-14 w-auto drop-shadow-[0_0_16px_rgba(255,42,42,.6)]" alt="Don Franco" />
+          <div>
+            <h2 class="text-white text-2xl sm:text-3xl font-semibold leading-tight">Por qué elegir Don&nbsp;Franco</h2>
+            <p class="text-slate-400 text-sm leading-relaxed mt-2">Somos fábrica. No es reventa. Nuestro diferencial es proceso.</p>
+          </div>
+        </div>
+
+        <div class="mt-8 grid sm:grid-cols-2 gap-4 text-sm">
+          <div class="rounded-xl2 bg-white/5 border border-white/10 p-4 shadow-card">
+            <div class="text-white font-semibold">Receta fija</div>
+            <div class="text-slate-400 text-[13px] leading-relaxed mt-1">Tus clientes compran siempre el mismo sabor. Sin lotes raros.</div>
+          </div>
+          <div class="rounded-xl2 bg-white/5 border border-white/10 p-4 shadow-card">
+            <div class="text-white font-semibold">Gramaje controlado</div>
+            <div class="text-slate-400 text-[13px] leading-relaxed mt-1">Hamburguesas, medallones y milanesas pesan lo que decís que pesan.</div>
+          </div>
+          <div class="rounded-xl2 bg-white/5 border border-white/10 p-4 shadow-card">
+            <div class="text-white font-semibold">Trazabilidad real</div>
+            <div class="text-slate-400 text-[13px] leading-relaxed mt-1">Cada caja con lote y fecha. Sabés qué entró a tu cámara y cuándo.</div>
+          </div>
+          <div class="rounded-xl2 bg-white/5 border border-white/10 p-4 shadow-card">
+            <div class="text-white font-semibold">Marca blanca</div>
+            <div class="text-slate-400 text-[13px] leading-relaxed mt-1">Producimos con TU etiqueta. Vos quedás como marca en góndola.</div>
+          </div>
+        </div>
+
+        <div class="mt-10 flex flex-col sm:flex-row flex-wrap gap-4">
+          <a href="https://wa.me/5493410000000?text=Hola%20quiero%20cotizar%20marca%20blanca%20Don%20Franco" class="inline-flex items-center justify-center rounded-xl2 bg-brand px-5 py-3 text-[15px] font-semibold text-white shadow-neon hover:bg-brand-light hover:shadow-[0_0_32px_rgba(255,42,42,.8)] transition">Quiero marca blanca</a>
+          <a href="index.html#contacto" class="inline-flex items-center justify-center rounded-xl2 border border-white/20 bg-white/5 px-5 py-3 text-[15px] font-semibold text-white/90 hover:bg-white/10 hover:text-white hover:border-white/40 transition">Volver a CIR Mayorista</a>
+        </div>
+      </div>
+
+      <!-- Foto / mock proceso -->
+      <div class="reveal order-1 lg:order-2">
+        <div class="relative rounded-xl3 border border-brand/40 bg-white/5 p-1 shadow-neon overflow-hidden">
+          <div class="absolute inset-0 bg-gradient-to-tr from-brand/20 via-transparent to-transparent pointer-events-none"></div>
+          <img src="assets/planta-donfranco.jpg" alt="Línea Don Franco" class="block w-full h-64 md:h-[22rem] object-cover object-center rounded-xl2" />
+          <div class="absolute left-4 bottom-4 rounded-xl2 bg-fondo/70 backdrop-blur-md border border-white/20 px-4 py-3 shadow-card">
+            <div class="text-[10px] font-semibold uppercase tracking-wider text-brand-light flex items-center gap-2">
+              <span class="inline-block h-2 w-2 rounded-full bg-brand dot"></span>
+              Túnel de frío propio
+            </div>
+            <div class="text-white font-semibold text-base leading-tight">Empaque en atmósfera controlada</div>
+            <div class="text-slate-400 text-[12px] leading-snug mt-1">Listo para góndola / mostrador</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CONTACTO DF ================= -->
+  <section id="contactoDF" class="relative py-20 md:py-28">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-16">
+
+      <div class="reveal">
+        <h2 class="text-2xl sm:text-3xl font-semibold text-white leading-tight">Quiero trabajar con Don Franco</h2>
+        <p class="mt-3 text-slate-400 text-base leading-relaxed max-w-md">Atendemos distribuidores, cadenas de carnicerías, supermercados, comedores industriales y fabricantes de alimentos. Pedinos visita comercial o cotización de marca blanca.</p>
+
+        <div class="mt-8 space-y-5 max-w-md">
+          <div class="rounded-xl3 border border-white/10 bg-white/5 p-6 shadow-card">
+            <div class="text-[11px] uppercase tracking-wide text-brand-light font-semibold flex items-center gap-2"><span class="inline-block h-2 w-2 rounded-full bg-brand dot"></span> Planta Don Franco</div>
+            <div class="text-white text-lg font-semibold leading-tight mt-2">Producción & Elaborados</div>
+            <div class="text-slate-400 text-[14px] leading-relaxed mt-2">[DIRECCIÓN PLANTA / FÁBRICA]<br/>Zona Industrial</div>
+            <div class="text-slate-400 text-[14px] leading-relaxed mt-2">Milanesas · Hamburguesas · Embutidos · Preparados listos</div>
+          </div>
+
+          <div class="rounded-xl3 border border-white/10 bg-white/5 p-6 shadow-card">
+            <div class="text-[11px] uppercase tracking-wide text-brand-light font-semibold flex items-center gap-2"><span class="inline-block h-2 w-2 rounded-full bg-brand dot"></span> Ventas Mayoristas</div>
+            <div class="text-white text-lg font-semibold leading-tight mt-2">WhatsApp Ventas</div>
+            <a class="text-brand-light text-[15px] font-semibold leading-relaxed mt-2 inline-block hover:text-brand-light/90 hover:drop-shadow-[0_0_12px_rgba(255,42,42,.8)]" href="https://wa.me/5493410000000?text=Hola%20quiero%20trabajar%20con%20Don%20Franco">+54 9 341 XXX XXXX</a>
+            <div class="text-slate-500 text-[12px] leading-relaxed mt-2">Lun a Sáb · Rosario y zona</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <div class="rounded-xl3 border border-white/10 bg-white/5 p-6 shadow-card">
+          <div class="text-[11px] uppercase tracking-wide text-brand-light font-semibold flex items-center gap-2">
+            <span class="inline-block h-2 w-2 rounded-full bg-brand dot"></span>
+            Mayorista CIR
+          </div>
+          <div class="text-white text-lg font-semibold leading-tight mt-2">Carnicerías Integradas de Rosario</div>
+          <div class="text-slate-400 text-[14px] leading-relaxed mt-2">[DIRECCIÓN MAYORISTA]<br/>Rosario · Santa Fe</div>
+          <div class="text-slate-400 text-[14px] leading-relaxed mt-2">Logística propia · Cadena de frío certificada</div>
+
+          <div class="mt-6 flex flex-col sm:flex-row flex-wrap gap-4">
+            <a href="index.html#contacto" class="inline-flex items-center justify-center rounded-xl2 bg-brand px-5 py-3 text-[15px] font-semibold text-white shadow-neon hover:bg-brand-light hover:shadow-[0_0_32px_rgba(255,42,42,.8)] transition">Contactar Mayorista CIR</a>
+            <a href="#top" class="inline-flex items-center justify-center rounded-xl2 border border-white/20 bg-white/5 px-5 py-3 text-[15px] font-semibold text-white/90 hover:bg-white/10 hover:text-white hover:border-white/40 transition">Volver arriba</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="border-t border-white/10 bg-black/60 backdrop-blur-xl">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 flex flex-col lg:flex-row gap-8 lg:gap-0 lg:items-center lg:justify-between text-[13px] text-slate-500">
+      <div class="flex items-start gap-3">
+        <img src="assets/donfranco-logo.png" alt="Don Franco" class="h-10 w-auto" />
+        <div class="leading-tight">
+          <div class="text-white font-semibold">Don Franco · Elaborados</div>
+          <div class="text-slate-500">Planta propia · Marca blanca · Control de frío</div>
+        </div>
+      </div>
+      <div class="text-slate-600 text-[12px] leading-relaxed lg:text-right">© <span id="yearNow"></span> Don Franco · Carnicerías Integradas de Rosario. Todos los derechos reservados.</div>
+    </div>
+  </footer>
+
+  <!-- ================= SCRIPTS ================= -->
+  <script>
+    // menu mobile toggle
+    const burgerBtn = document.getElementById('burgerBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    burgerBtn?.addEventListener('click', ()=>{
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // intersection reveal
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){ entry.target.classList.add('show'); }
+      });
+    }, {threshold:0.15});
+    document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+    // año footer
+    document.getElementById('yearNow').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
